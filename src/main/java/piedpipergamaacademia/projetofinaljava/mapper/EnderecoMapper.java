@@ -14,6 +14,7 @@ public class EnderecoMapper {
 
     public static EnderecoResponse modelToResponse(Endereco endereco) {
         EnderecoResponse response = new EnderecoResponse();
+        response.setId(endereco.getId());
         response.setCep(endereco.getCep());
         response.setCidade(endereco.getCidade());
         response.setRua(endereco.getRua());

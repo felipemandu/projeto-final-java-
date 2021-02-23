@@ -1,13 +1,14 @@
 package piedpipergamaacademia.projetofinaljava.dto;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
 
 public class DisciplinaDto {
 
 	@NotEmpty
-	@Min(5)
+	@Length(min=5)
     private String nome;
 	
 	@Size(max=10)

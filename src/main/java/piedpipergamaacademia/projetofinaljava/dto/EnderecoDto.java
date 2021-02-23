@@ -1,23 +1,24 @@
 package piedpipergamaacademia.projetofinaljava.dto;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
 
 public class EnderecoDto {
 
 	@NotEmpty
-	@Min(5)
+	@Length(min=5)
     private String rua;
 	
 	@NotEmpty
     private String numero;
+	
+    private String complemento;
 
 	@NotEmpty
-	@Min(3)
+	@Length(min=3)
     private String cidade;
-
-    private String complemento;
 
     @Pattern(regexp = "[A-Z]{2}")
     private String uf;

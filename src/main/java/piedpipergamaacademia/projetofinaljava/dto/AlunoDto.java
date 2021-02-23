@@ -2,14 +2,15 @@ package piedpipergamaacademia.projetofinaljava.dto;
 
 import java.util.List;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
 
 public class AlunoDto {
 
 	@NotEmpty
-	@Min(5)
+	@Length(min=5)
     private String nome;
     
 	@Pattern(regexp="[1-9][0-9]{4}-[0-9]{4}")
@@ -18,9 +19,9 @@ public class AlunoDto {
 	@NotEmpty
     private String curso;
     
-    private List<EnderecoDto> enderecoDto;
+    private List<EnderecoDto> endereco;
     
-    private List<DisciplinaDto> disciplinaDto;
+    private List<DisciplinaDto> disciplina;
 
     public String getNome() {
         return nome;
@@ -48,19 +49,19 @@ public class AlunoDto {
     }
 
 	public List<EnderecoDto> getEnderecoDto() {
-		return enderecoDto;
+		return endereco;
 	}
 
-	public void setEnderecoDto(List<EnderecoDto> enderecoDto) {
-		this.enderecoDto = enderecoDto;
+	public void setEnderecoDto(List<EnderecoDto> endereco) {
+		this.endereco = endereco;
 	}
 
 	public List<DisciplinaDto> getDisciplinaDto() {
-		return disciplinaDto;
+		return disciplina;
 	}
 
-	public void setDisciplinaDto(List<DisciplinaDto> disciplinaDto) {
-		this.disciplinaDto = disciplinaDto;
+	public void setDisciplinaDto(List<DisciplinaDto> disciplina) {
+		this.disciplina = disciplina;
 	}
     
 }

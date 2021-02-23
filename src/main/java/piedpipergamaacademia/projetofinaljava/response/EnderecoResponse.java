@@ -3,7 +3,7 @@ package piedpipergamaacademia.projetofinaljava.response;
 public class EnderecoResponse {
 
     //TODO definir quais dados vão ser retornado na resposta
-
+	private Long id;
     private String rua;
     private String cidade;
     private String uf;
@@ -11,7 +11,17 @@ public class EnderecoResponse {
     private String numero;
     private String complemento;
     
-    public String getNumero() {
+    
+    
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNumero() {
 		return numero;
 	}
 
