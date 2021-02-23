@@ -68,7 +68,7 @@ public class AlunoController {
 		return ResponseEntity.ok(response);
 	}
 
-	@GetMapping("/{nome}")
+	@GetMapping("/nome/{nome}")
 	public ResponseEntity<AlunoResponse> getAlunoPorNome(@PathVariable("nome") String nome) {
 		Optional<Aluno> alunoOptional = service.findAlunoPorNome(nome);
 
@@ -81,7 +81,7 @@ public class AlunoController {
 		return ResponseEntity.ok(response);
 	}
 
-	@GetMapping("/{id}/{disciplina}/status")
+	@GetMapping("/{id}/disciplina/{disciplina}/status")
 	public ResponseEntity<String> getAlunoDisciplinaAprovacao(@PathVariable("id") Long id,
 			@PathVariable("disciplina") String disciplinaNome) {
 
@@ -96,7 +96,7 @@ public class AlunoController {
 		return ResponseEntity.ok(status);
 	}
 
-	@GetMapping("/{id}/{disciplina}/conceito")
+	@GetMapping("/{id}/disciplina/{disciplina}/conceito")
 	public ResponseEntity<String> getAlunoDisciplinaConceito(@PathVariable("id") Long id,
 			@PathVariable("disciplina") String disciplinaNome) {
 		Optional<Disciplina> disciplinaOptional = service.findStatusDisciplinaDeAluno(id, disciplinaNome);
@@ -109,7 +109,7 @@ public class AlunoController {
 		return ResponseEntity.ok(disciplina.getConceito());
 	}
 
-	@GetMapping("/{id}/{disciplina}/notas")
+	@GetMapping("/{id}/disciplina/{disciplina}/notas")
 	public ResponseEntity<DisciplinaResponse> getAlunoDisciplinaNotas(@PathVariable("id") Long id,
 			@PathVariable("disciplina") String disciplinaNome) {
 		Optional<Disciplina> disciplinaOptional = service.findDisciplinadeAlunoPorNome(id, disciplinaNome);

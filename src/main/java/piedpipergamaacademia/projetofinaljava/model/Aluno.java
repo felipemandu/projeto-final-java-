@@ -18,10 +18,10 @@ public class Aluno {
 
     private String Curso;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Endereco> enderecos = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Disciplina> disciplinas = new ArrayList<>();
 
     public Long getId() {
