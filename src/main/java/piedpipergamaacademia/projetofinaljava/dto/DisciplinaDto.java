@@ -5,6 +5,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+@Schema(name="DisciplinaDto")
 public class DisciplinaDto {
 
 	@NotEmpty

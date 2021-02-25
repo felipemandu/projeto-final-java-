@@ -1,5 +1,8 @@
 package piedpipergamaacademia.projetofinaljava.response;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(name="EnderecoResponse")
 public class EnderecoResponse {
 
     //TODO definir quais dados vão ser retornado na resposta

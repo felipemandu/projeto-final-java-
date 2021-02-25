@@ -1,5 +1,8 @@
 package piedpipergamaacademia.projetofinaljava.response;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(name="DisciplinaResponse")
 public class DisciplinaResponse {
 
     //TODO definir quais dados vão ser retornado na resposta

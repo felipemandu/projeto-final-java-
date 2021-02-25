@@ -1,27 +1,35 @@
 package piedpipergamaacademia.projetofinaljava.configs;
 
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+
+/**
+* https://www.baeldung.com/spring-rest-openapi-documentation
+* https://dzone.com/articles/doing-more-with-springdoc-openapi
+* 
+*
+*/
 @Configuration
 public class SwaggerConfig {
+	
+   @Bean
+   public OpenAPI customOpenAPI(@Value("${application-description}") String appDesciption, 
+   							@Value("${application-version}") String appVersion) {
+       return new OpenAPI()
+         .info(new Info()
+         .title("sample application API")
+         .version(appVersion)
+         .description(appDesciption)
+         .termsOfService("http://swagger.io/terms/")
+         .license(new License().name("Apache 2.0").url("http://springdoc.org")));
+   }
 
-    /*
-     	https://www.treinaweb.com.br/blog/documentando-uma-api-spring-boot-com-o-swagger/
-    	https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
-     */
 
-    @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build();
-    }
+
 }

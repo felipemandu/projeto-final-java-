@@ -7,6 +7,8 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+@Schema(name="AlunoDto")
 public class AlunoDto {
 
 	@NotEmpty

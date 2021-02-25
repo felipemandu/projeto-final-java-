@@ -2,6 +2,8 @@ package piedpipergamaacademia.projetofinaljava.response;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+@Schema(name="AlunoResponse")
 public class AlunoResponse {
 
     //TODO definir quais dados vão ser retornado na resposta
