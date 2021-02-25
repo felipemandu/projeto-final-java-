@@ -46,6 +46,7 @@ public class AlunoController {
 	public AlunoController(AlunoService service) {
 		this.service = service;
 	}
+	//teste
 
 	@GetMapping
 	public ResponseEntity<List<AlunoResponse>> getAlunos(@RequestParam(value = "nome", required = false) String nome,
