@@ -10,9 +10,10 @@ public class AlunoResponse {
 
     private String nome;
     private String telefone;
+    private String curso;
     private List<EnderecoResponse> endereco;
     private List<DisciplinaResponse> disciplina;
-    private String curso;
+    
 
     public String getNome() {
         return nome;
