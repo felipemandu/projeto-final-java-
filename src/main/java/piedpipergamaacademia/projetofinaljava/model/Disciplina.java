@@ -17,6 +17,7 @@ public class Disciplina {
     private Double notaTrabalho;
     private Double notaApresentacao;
     private String conceito;
+    private double media;
 
     public Long getId() {
         return id;
@@ -119,5 +120,20 @@ public class Disciplina {
 		return nota1 && nota2 && notaApresentacao && notaTrabalho;
 	}
     
+    public String getMedia() {
+    	if(possuiTodasNotas()) {
+    		return calculaMedia(this.nota1, this.nota2, this.notaApresentacao, this.notaTrabalho);
+    	}
+		return null;
+	}
+
+	public String calculaMedia(double nota1, 
+						 double nota2, 
+						 double notaApresentacao,
+						 double notaTrabalho) {
+		
+		media = (nota1 + nota2 + notaApresentacao + notaTrabalho)/4;
+		return ("A media é: "+ media);
+	}
 	
 }

@@ -16,6 +16,9 @@ public class DisciplinaMapper {
     	response.setId(disciplina.getId());
     	response.setNome(disciplina.getNome());
     	response.setConceito(disciplina.getConceito());
+    	response.setMedia(disciplina.getMedia());
+    	response.setStatus(disciplina.getStatus());
+    	
         return response;
     }
 

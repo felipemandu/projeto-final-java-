@@ -1,5 +1,6 @@
 package piedpipergamaacademia.projetofinaljava.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,10 +19,28 @@ public interface AlunoRepository  extends JpaRepository<Aluno, Long> {
     * */
 	
 	Optional<Aluno> findByNome(String nome);
+	List<Aluno> findByCurso(String curso);
+	void deleteById(Long id);
+	
+	void delete(Aluno aluno);
+	
+	void deleteByNome(String nome);
 	
 	@Query("SELECT d FROM Aluno a "
 			+ "JOIN a.disciplinas d "
 			+ "WHERE d.nome = :disciplinaNome "
 			+ "AND a.id = :id")
 	Optional<Disciplina> findByIdAndNome(@Param("id")Long id, @Param("disciplinaNome")String disciplinaNome);
+	
+	@Query("SELECT a FROM Aluno a "
+			+ "JOIN a.disciplinas d "
+			+ "WHERE d.nome = :disciplinaNome ")
+	List<Aluno> findByDisciplina(@Param("disciplinaNome")String disciplinaNome);
+	
+	
+	@Query("SELECT a FROM Aluno a "
+			+ "JOIN a.disciplinas d "
+			+ "WHERE d.conceito = :conceito ")
+	List<Aluno> findAlunoPorConceito(@Param("conceito")String conceito);
+	
 }

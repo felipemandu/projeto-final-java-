@@ -16,7 +16,7 @@ public class Aluno {
 
     private String telefone;
 
-    private String Curso;
+    private String curso;
 
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Endereco> enderecos = new ArrayList<>();
@@ -49,11 +49,11 @@ public class Aluno {
     }
 
     public String getCurso() {
-        return Curso;
+        return curso;
     }
 
     public void setCurso(String curso) {
-        Curso = curso;
+        this.curso = curso;
     }
 
     public List<Endereco> getEnderecos() {

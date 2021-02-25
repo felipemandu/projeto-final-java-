@@ -2,7 +2,9 @@ package piedpipergamaacademia.projetofinaljava.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -10,6 +12,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,6 +45,7 @@ public class AlunoController {
 	public AlunoController(AlunoService service) {
 		this.service = service;
 	}
+	//teste
 
 	@GetMapping
 	public ResponseEntity<List<AlunoResponse>> getAlunos(@RequestParam(value = "nome", required = false) String nome,
@@ -50,6 +54,45 @@ public class AlunoController {
 			@RequestParam(value = "curso", required = false) String curso) {
 		// TODO ainda não foi feito o filtro.
 		List<Aluno> alunos = service.getAlunos(nome, conceito, disciplinaNome, curso);
+		List<AlunoResponse> alunosResponse = alunos.stream().map(AlunoMapper::modelToResponse)
+				.collect(Collectors.toList());
+		return ResponseEntity.ok(alunosResponse);
+	}
+	
+	@GetMapping("/conceito/{conceito}")
+	public ResponseEntity<List<AlunoResponse>> getAlunoPorDisciplina1(@PathVariable("conceito") String conceito) {
+		List<Aluno> alunos = service.findAlunoPorConceito(conceito);
+
+		if (alunos.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+
+		List<AlunoResponse> alunosResponse = alunos.stream().map(AlunoMapper::modelToResponse)
+				.collect(Collectors.toList());
+		return ResponseEntity.ok(alunosResponse);
+	}
+	
+	@GetMapping("/curso/{curso}")
+	public ResponseEntity<List<AlunoResponse>> getAlunoPorCurso(@PathVariable("curso") String curso) {
+		List<Aluno> alunos = service.findAlunoPorCurso(curso);
+
+		if (alunos.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+
+		List<AlunoResponse> alunosResponse = alunos.stream().map(AlunoMapper::modelToResponse)
+				.collect(Collectors.toList());
+		return ResponseEntity.ok(alunosResponse);
+	}
+	
+	@GetMapping("/disciplina/{disciplina}")
+	public ResponseEntity<List<AlunoResponse>>  getAlunoPorDisciplina(@PathVariable("disciplina") String disciplina) {
+		List<Aluno> alunos  = service.findAlunoPorDisciplina(disciplina);
+
+		if (alunos.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+
 		List<AlunoResponse> alunosResponse = alunos.stream().map(AlunoMapper::modelToResponse)
 				.collect(Collectors.toList());
 		return ResponseEntity.ok(alunosResponse);
@@ -181,5 +224,41 @@ public class AlunoController {
 		AlunoResponse response = AlunoMapper.modelToResponse(aluno);
 		return ResponseEntity.ok(response);
 	}
-
+	
+	@DeleteMapping("/id/{id}")
+	public Map<String, Boolean> deleteAlunoPorId(@PathVariable(value = "id") Long id){
+		
+		Optional<Aluno> alunoOptional = service.findAlunoPorId(id);
+		
+		if (!alunoOptional.isPresent()) {
+			Map<String, Boolean> response = new HashMap<>();
+			response.put("Usuario não encontrado", Boolean.FALSE);
+		}
+		service.deletePorId(id);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return response;
+	}
+	
+	@DeleteMapping("/nome/{nome}")
+	public Map<String, Boolean> deleteAlunoPorNome(@PathVariable("nome") String nome){
+		Optional<Aluno> alunoOptional = service.findAlunoPorNome(nome);
+		
+		if (!alunoOptional.isPresent()) {
+			Map<String, Boolean> response = new HashMap<>();
+			response.put("Aluno não encontrado", Boolean.FALSE);
+			
+		}
+		
+		Aluno aluno = alunoOptional.get();
+		service.deletePorNome(aluno);
+		
+		Map<String, Boolean> response = new HashMap<> ();
+		response.put("deleted", Boolean.TRUE);
+		
+		return response;
+		
+	}
+	
+	
 }

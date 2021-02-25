@@ -51,4 +51,6 @@ public class AlunoResponse {
     public void setCurso(String curso) {
         this.curso = curso;
     }
+
+	
 }

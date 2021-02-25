@@ -58,6 +58,19 @@ public class AlunoService {
 		return Optional.of(aluno);
 	}
 	
+	public List<Aluno>  findAlunoPorDisciplina(@Valid String disciplinaNome) {
+		return alunoRepository.findByDisciplina(disciplinaNome);
+	}
+	
+	public List<Aluno> findAlunoPorConceito(@Valid String conceito) {
+		return alunoRepository.findAlunoPorConceito(conceito);
+	}
+	
+	
+	public List<Aluno> findAlunoPorCurso(@Valid String curso) {
+		return alunoRepository.findByCurso(curso);
+	}
+	
 	public Optional<Aluno> updateDisciplinaAluno(Long id, @Valid DisciplinaDto disciplina) {
 		Optional<Aluno> alunoOptional = alunoRepository.findById(id);
 		if (!alunoOptional.isPresent()) {
@@ -128,6 +141,15 @@ public class AlunoService {
 		
 		
 		return alunoOptional;
+	}
+
+	public void deletePorId(Long id) {
+		alunoRepository.deleteById(id);		
+	}
+	
+	public void deletePorNome(Aluno aluno) {
+		alunoRepository.delete(aluno);
+		
 	}
 
 	

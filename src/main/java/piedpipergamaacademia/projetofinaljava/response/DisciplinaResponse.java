@@ -7,6 +7,8 @@ public class DisciplinaResponse {
     private Long id;
     private String nome;
     private String conceito;
+    private String media;
+    private String status;
 
     public Long getId() {
         return id;
@@ -31,4 +33,23 @@ public class DisciplinaResponse {
     public void setConceito(String conceito) {
         this.conceito = conceito;
     }
+
+	public String getMedia() {
+		return media;
+	}
+
+	public void setMedia(String media) {
+		this.media = media;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+    
+	
+    
 }
