@@ -45,14 +45,12 @@ public class AlunoController {
 	public AlunoController(AlunoService service) {
 		this.service = service;
 	}
-	//teste
 
 	@GetMapping
 	public ResponseEntity<List<AlunoResponse>> getAlunos(@RequestParam(value = "nome", required = false) String nome,
 			@RequestParam(value = "conceito", required = false) String conceito,
 			@RequestParam(value = "disciplina", required = false) String disciplinaNome,
 			@RequestParam(value = "curso", required = false) String curso) {
-		// TODO ainda não foi feito o filtro.
 		List<Aluno> alunos = service.getAlunos(nome, conceito, disciplinaNome, curso);
 		List<AlunoResponse> alunosResponse = alunos.stream().map(AlunoMapper::modelToResponse)
 				.collect(Collectors.toList());
