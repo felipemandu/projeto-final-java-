@@ -1,15 +1,22 @@
 package piedpipergamaacademia.projetofinaljava.model;
 
 
-import javax.persistence.*;
+
+
+import org.hibernate.annotations.CascadeType;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+import javax.persistence.OneToMany;
+
+@Document(collection="Aluno")
 public class Aluno {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String nome;
@@ -18,10 +25,10 @@ public class Aluno {
 
     private String curso;
 
-    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    //@OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Endereco> enderecos = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    //@OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Disciplina> disciplinas = new ArrayList<>();
 
     public Long getId() {

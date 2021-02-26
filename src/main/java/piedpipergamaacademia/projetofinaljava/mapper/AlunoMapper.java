@@ -30,6 +30,7 @@ public class AlunoMapper {
 
     public static Aluno dtoToModel(AlunoDto dto) {
         Aluno model = new Aluno();
+        model.setId(dto.getId());
         model.setNome(dto.getNome());
         model.setTelefone(dto.getTelefone());
         model.setCurso(dto.getCurso());

@@ -24,8 +24,18 @@ public class AlunoDto {
     private List<EnderecoDto> endereco;
     
     private List<DisciplinaDto> disciplina;
+    
+    private Long id;
 
-    public String getNome() {
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
         return nome;
     }
 
