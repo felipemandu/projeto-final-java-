@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +37,8 @@ import piedpipergamaacademia.projetofinaljava.service.AlunoService;
 @RestController
 @RequestMapping("/aluno")
 public class AlunoController {
+	
+
 
 	private final AlunoService service;
 
@@ -60,7 +63,7 @@ public class AlunoController {
 		List<Aluno> alunos = service.findAlunoPorConceito(conceito);
 
 		if (alunos.isEmpty()) {
-			return ResponseEntity.notFound().build();
+			throw new ResourceNotFoundException("Aluno não encontrado");
 		}
 
 		List<AlunoResponse> alunosResponse = alunos.stream().map(AlunoMapper::modelToResponse)
@@ -73,7 +76,7 @@ public class AlunoController {
 		List<Aluno> alunos = service.findAlunoPorCurso(curso);
 
 		if (alunos.isEmpty()) {
-			return ResponseEntity.notFound().build();
+			throw new ResourceNotFoundException("Aluno não encontrado");
 		}
 
 		List<AlunoResponse> alunosResponse = alunos.stream().map(AlunoMapper::modelToResponse)
@@ -86,7 +89,7 @@ public class AlunoController {
 		List<Aluno> alunos  = service.findAlunoPorDisciplina(disciplina);
 
 		if (alunos.isEmpty()) {
-			return ResponseEntity.notFound().build();
+			throw new ResourceNotFoundException("Aluno não encontrado");
 		}
 
 		List<AlunoResponse> alunosResponse = alunos.stream().map(AlunoMapper::modelToResponse)
@@ -99,7 +102,7 @@ public class AlunoController {
 		Optional<Aluno> alunoOptional = service.findAlunoPorId(id);
 
 		if (!alunoOptional.isPresent()) {
-			return ResponseEntity.notFound().build();
+			throw new ResourceNotFoundException("Aluno não encontrado");
 		}
 
 		Aluno aluno = alunoOptional.get();
@@ -112,7 +115,7 @@ public class AlunoController {
 		Optional<Aluno> alunoOptional = service.findAlunoPorNome(nome);
 
 		if (!alunoOptional.isPresent()) {
-			return ResponseEntity.notFound().build();
+			throw new ResourceNotFoundException("Aluno não encontrado");
 		}
 
 		Aluno aluno = alunoOptional.get();
@@ -127,7 +130,7 @@ public class AlunoController {
 		Optional<Disciplina> disciplinaOptional = service.findStatusDisciplinaDeAluno(id, disciplinaNome);
 
 		if (!disciplinaOptional.isPresent()) {
-			return ResponseEntity.notFound().build();
+			throw new ResourceNotFoundException("Disciplina não encontrada");
 		}
 
 		Disciplina disciplina = disciplinaOptional.get();
@@ -141,7 +144,7 @@ public class AlunoController {
 		Optional<Disciplina> disciplinaOptional = service.findStatusDisciplinaDeAluno(id, disciplinaNome);
 
 		if (!disciplinaOptional.isPresent()) {
-			return ResponseEntity.notFound().build();
+			throw new ResourceNotFoundException("Disciplina não encontrada");
 		}
 
 		Disciplina disciplina = disciplinaOptional.get();
@@ -154,7 +157,7 @@ public class AlunoController {
 		Optional<Disciplina> disciplinaOptional = service.findDisciplinadeAlunoPorNome(id, disciplinaNome);
 		
 		if (!disciplinaOptional.isPresent()) {
-			return ResponseEntity.notFound().build();
+			throw new ResourceNotFoundException("Disciplina não encontrada");
 		}
 
 		Disciplina disciplina = disciplinaOptional.get();
@@ -165,8 +168,9 @@ public class AlunoController {
 	@PostMapping
 	public ResponseEntity<AlunoResponse> postAluno(@RequestBody @Valid AlunoDto alunoDto) {
 		Optional<Aluno> optionalAluno = service.saveAluno(alunoDto);
+
 		if(!optionalAluno.isPresent()) {
-			return ResponseEntity.badRequest().build();
+			throw new ResourceNotFoundException("Aluno não encontrado");
 		}
 		
 		Aluno aluno = optionalAluno.get();
@@ -183,7 +187,7 @@ public class AlunoController {
 		Optional<Aluno> alunoOptional = service.updateAluno(id, alunoDto);
 		
 		if (!alunoOptional.isPresent()) {
-			return ResponseEntity.notFound().build();
+			throw new ResourceNotFoundException("Aluno não encontrado");
 		}
 
 		Aluno aluno = alunoOptional.get();
@@ -197,7 +201,7 @@ public class AlunoController {
 		Optional<Aluno> alunoOptional = service.updateDisciplinaAluno(id, disciplina);
 		
 		if (!alunoOptional.isPresent()) {
-			return ResponseEntity.notFound().build();
+			throw new ResourceNotFoundException("Aluno não encontrado");
 		}
 
 		Aluno aluno = alunoOptional.get();
@@ -211,7 +215,7 @@ public class AlunoController {
 		Optional<Aluno> alunoOptional = service.updateEnderecoAluno(id, idEndereco, endereco);
 		
 		if (!alunoOptional.isPresent()) {
-			return ResponseEntity.notFound().build();
+			throw new ResourceNotFoundException("Aluno não encontrado");
 		}
 
 		Aluno aluno = alunoOptional.get();
@@ -225,8 +229,7 @@ public class AlunoController {
 		Optional<Aluno> alunoOptional = service.findAlunoPorId(id);
 		
 		if (!alunoOptional.isPresent()) {
-			Map<String, Boolean> response = new HashMap<>();
-			response.put("Usuario não encontrado", Boolean.FALSE);
+			throw new ResourceNotFoundException("Aluno não encontrado");
 		}
 		service.deletePorId(id);
 		Map<String, Boolean> response = new HashMap<>();
@@ -239,9 +242,7 @@ public class AlunoController {
 		Optional<Aluno> alunoOptional = service.findAlunoPorNome(nome);
 		
 		if (!alunoOptional.isPresent()) {
-			Map<String, Boolean> response = new HashMap<>();
-			response.put("Aluno não encontrado", Boolean.FALSE);
-			
+			throw new ResourceNotFoundException("Aluno não encontrado");
 		}
 		
 		Aluno aluno = alunoOptional.get();

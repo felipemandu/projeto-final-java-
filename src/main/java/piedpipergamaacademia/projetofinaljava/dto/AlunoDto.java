@@ -2,6 +2,7 @@ package piedpipergamaacademia.projetofinaljava.dto;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
@@ -12,17 +13,19 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class AlunoDto {
 
 	@NotEmpty
-	@Length(min=5)
+	@Length(min=5, message = "Deve ser colocado o nome completo")
     private String nome;
     
-	@Pattern(regexp="[1-9][0-9]{4}-[0-9]{4}")
+	@Pattern(regexp="\\([1-9]{2}\\) {0,1}{2}[1-9][0-9]{3,4}-{0,1}[0-9]{4}", message = "O Telefone deve seguir o padrão (99) 99999-9999")
     private String telefone;
     
-	@NotEmpty
+	@NotEmpty(message = "O nome do curso é obrigatório e não pode ser deixado em branco")
     private String curso;
     
+	@Valid
     private List<EnderecoDto> endereco;
     
+	@Valid
     private List<DisciplinaDto> disciplina;
 
     public String getNome() {
@@ -65,5 +68,6 @@ public class AlunoDto {
 	public void setDisciplinaDto(List<DisciplinaDto> disciplina) {
 		this.disciplina = disciplina;
 	}
+
     
 }

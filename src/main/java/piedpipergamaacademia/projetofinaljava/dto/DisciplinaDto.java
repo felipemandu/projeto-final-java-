@@ -1,28 +1,26 @@
 package piedpipergamaacademia.projetofinaljava.dto;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotBlank;
 
-import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(name="DisciplinaDto")
 public class DisciplinaDto {
 
-	@NotEmpty
-	@Length(min=5)
+	@NotBlank(message = "O nome da disciplina é obrigatório")
     private String nome;
 	
-	@Size(max=10)
+	@Range(min= 0, max=10, message= "Insira um valor entre 0 a 10")
     private Double nota1;
     
-	@Size(max=10)
+	@Range(min= 0, max=10, message= "Insira um valor entre 0 a 10")
     private Double nota2;
 
-	@Size(max=10)
+	@Range(min= 0, max=10, message= "Insira um valor entre 0 a 10")
     private Double notaTrabalho;
 
-	@Size(max=10)
+	@Range(min= 0, max=10, message= "Insira um valor entre 0 a 10")
     private Double notaApresentacao;
 
     public String getNome() {
