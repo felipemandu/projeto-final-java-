@@ -1,7 +1,6 @@
 package piedpipergamaacademia.projetofinaljava.controller;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import piedpipergamaacademia.projetofinaljava.dto.AlunoDto;
 import piedpipergamaacademia.projetofinaljava.dto.DisciplinaDto;
@@ -38,8 +38,6 @@ import piedpipergamaacademia.projetofinaljava.service.AlunoService;
 public class AlunoController {
 
 	private final AlunoService service;
-	
-	private final String ENDERECO_SITE = "http://localhost:8080";
 
 	@Autowired
 	public AlunoController(AlunoService service) {
@@ -172,12 +170,10 @@ public class AlunoController {
 		}
 		
 		Aluno aluno = optionalAluno.get();
-		URI location = null;
-		try {
-			location = new URI(ENDERECO_SITE + "/aluno/" + aluno.getId());
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
+		URI location = MvcUriComponentsBuilder.fromController(getClass())
+	            .path("/{id}")
+	            .buildAndExpand(aluno.getId())
+	            .toUri();
 		AlunoResponse response = AlunoMapper.modelToResponse(aluno);
 		return ResponseEntity.created(location).body(response);
 	}
