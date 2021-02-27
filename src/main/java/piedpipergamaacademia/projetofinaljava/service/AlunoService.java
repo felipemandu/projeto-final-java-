@@ -85,11 +85,11 @@ public class AlunoService {
 	}
 
 	public Optional<Disciplina> findStatusDisciplinaDeAluno(Long id, String disciplinaNome) {
-		return alunoRepository.findByIdAndNome(id, disciplinaNome);
+		return alunoRepository.findByDisciplinasIdAndNome(id, disciplinaNome);
 	}
 
 	public Optional<Disciplina> findDisciplinadeAlunoPorNome(Long id, String disciplinaNome) {
-		return alunoRepository.findByIdAndNome(id, disciplinaNome);
+		return alunoRepository.findByDisciplinasIdAndNome(id, disciplinaNome);
 	}
 
 	public Optional<Aluno> saveAluno(@Valid AlunoDto alunoDto) {
@@ -100,7 +100,7 @@ public class AlunoService {
 	}
 
 	public List<Aluno> findAlunoPorDisciplina(@Valid String disciplinaNome) {
-		return alunoRepository.findByDisciplina(disciplinaNome);
+		return alunoRepository.findByDisciplinasNome(disciplinaNome);
 	}
 
 	public List<Aluno> findAlunoPorConceito(@Valid String conceito) {

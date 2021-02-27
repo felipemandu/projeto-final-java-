@@ -27,11 +27,9 @@ public interface AlunoRepository  extends MongoRepository<Aluno, Long> {
 	
 	void deleteByNome(String nome);
 	
-	@Query("{disciplina: {nome: ?0}")
-	Optional<Disciplina> findByIdAndNome(@Param("id")Long id, @Param("disciplinaNome")String disciplinaNome);
+	Optional<Disciplina> findByDisciplinasIdAndNome(Long id, String disciplinaNome);
 	
-	@Query("{disciplina: {nome: ?0}")
-	List<Aluno> findByDisciplina(@Param("disciplinaNome")String disciplinaNome);
+	List<Aluno> findByDisciplinasNome(String disciplinaNome);
 	
 	
 	@Query("{disciplina: {conceito: ?0")
