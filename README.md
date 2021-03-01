@@ -1,4 +1,4 @@
-# Turma 2 da Gama Academia - Accenture
+# Turma 1 da Gama Academia - Accademia Accenture 2.0
 Projeto de Java - Grupo Pied Piper
 
 [Swagger com documentação API REST do projeto](https://piedpiper-gama-java.herokuapp.com/index.html)
