@@ -27,7 +27,7 @@ A fim de isolar as classes do modelo da comunicação externa foram criadas clas
 Já nesse momento do projeto nos focamos na validação de entrada de dados usando a biblioteca Bean Validation do Spring. Também foi adicionado a biblioteca [SpringDoc]( https://springdoc.org/) para documentação Swagger do projeto.
 
 Com a aplicação pronta foram realizadas as configurações necessárias para o ambiente de produção e foi realizado o deploy da aplicação para a plataforma Heroku onde a aplicação está hospedada.
-A documentação do projeto está na URL [https://piedpiper-gama-java.herokuapp.com/index.html](https://piedpiper-gama-java.herokuapp.com/index.html])
+A documentação do projeto está na URL [https://piedpiper-gama-java.herokuapp.com/index.html](https://piedpiper-gama-java.herokuapp.com/index.html)
 
 ### Tecnologias utilizadas
 
