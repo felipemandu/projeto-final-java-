@@ -2,6 +2,7 @@ package piedpipergamaacademia.projetofinaljava.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -118,6 +119,7 @@ public class AlunoService {
 		}
 		Aluno aluno = alunoOptional.get();
 		atualizarDisciplinaNoALuno(disciplina, aluno.getDisciplinas());
+		alunoRepository.saveAndFlush(aluno);
 		alunoOptional = Optional.of(aluno);
 		return alunoOptional;
 
@@ -125,11 +127,14 @@ public class AlunoService {
 
 	private void atualizarDisciplinaNoALuno(@Valid DisciplinaDto disciplina, List<Disciplina> disciplinas) {
 		Disciplina disciplinaAtualizado = DisciplinaMapper.dtoToModel(disciplina);
-		disciplinas.forEach(d -> {
-			if (d.getNome().equals(disciplinaAtualizado.getNome())) {
-				d = disciplinaAtualizado;
+		for(Disciplina d : disciplinas) {
+			if(d.getNome().equals(disciplinaAtualizado.getNome())) {
+				d.setNota1(disciplinaAtualizado.getNota1());
+				d.setNota2(disciplinaAtualizado.getNota2());
+				d.setNotaTrabalho(disciplinaAtualizado.getNotaTrabalho());
+				d.setNotaApresentacao(disciplinaAtualizado.getNotaApresentacao());
 			}
-		});
+		}
 
 	}
 
@@ -140,6 +145,7 @@ public class AlunoService {
 		}
 		Aluno aluno = alunoOptional.get();
 		atualizarEnderecoNoALuno(endereco, idEndereco, aluno.getEnderecos());
+		alunoRepository.save(aluno);
 		alunoOptional = Optional.of(aluno);
 		return alunoOptional;
 	}
@@ -147,13 +153,7 @@ public class AlunoService {
 	private void atualizarEnderecoNoALuno(EnderecoDto endereco, Long idEndereco, List<Endereco> enderecos) {
 		Endereco enderecoAtualizado = EnderecoMapper.dtoToModel(endereco);
 		enderecoAtualizado.setId(idEndereco);
-		enderecos.forEach(e -> {
-			if (enderecoAtualizado.equals(e)) {
-				e = enderecoAtualizado;
-			}
-			;
-		});
-
+		enderecos.set(0, enderecoAtualizado);
 	}
 
 	public Optional<Aluno> updateAluno(Long id, @Valid AlunoDto alunoDto) {

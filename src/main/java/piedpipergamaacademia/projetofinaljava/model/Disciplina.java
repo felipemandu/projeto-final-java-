@@ -69,10 +69,12 @@ public class Disciplina {
 
     
     public String getConceito() {
-    	if(conceito == null && possuiTodasNotas()) {
+    	if(possuiTodasNotas()) {
     		transformarNotaEmConceito();
-    	}	
-        return conceito;
+    	} else {
+    		conceito = "Não definido";
+    	}  
+    	return conceito;
     }
 
 
@@ -88,7 +90,7 @@ public class Disciplina {
 			case "D":;
 			case "E":;
 			case "F": return "Reprovado";
-			default: return "Não se aplica";
+			default: return "Não definido";
 		}
 
 	}
@@ -135,5 +137,14 @@ public class Disciplina {
 		media = (nota1 + nota2 + notaApresentacao + notaTrabalho)/4;
 		return ("A media é: "+ media);
 	}
+
+	@Override
+	public String toString() {
+		return "Disciplina [id=" + id + ", nome=" + nome + ", nota1=" + nota1 + ", nota2=" + nota2 + ", notaTrabalho="
+				+ notaTrabalho + ", notaApresentacao=" + notaApresentacao + ", conceito=" + conceito + ", media="
+				+ media + "]";
+	}
+	
+	
 	
 }

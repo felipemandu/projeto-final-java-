@@ -26,7 +26,7 @@ public class AlunoDto {
     private List<EnderecoDto> endereco;
     
 	@Valid
-    private List<DisciplinaDto> disciplina;
+    private List<DisciplinaDto> disciplinas;
 
     public String getNome() {
         return nome;
@@ -53,21 +53,22 @@ public class AlunoDto {
         this.curso = curso;
     }
 
-	public List<EnderecoDto> getEnderecoDto() {
+	public List<EnderecoDto> getEndereco() {
 		return endereco;
 	}
 
-	public void setEnderecoDto(List<EnderecoDto> endereco) {
+	public void setEndereco(List<EnderecoDto> endereco) {
 		this.endereco = endereco;
 	}
 
-	public List<DisciplinaDto> getDisciplinaDto() {
-		return disciplina;
+	public List<DisciplinaDto> getDisciplinas() {
+		return disciplinas;
 	}
 
-	public void setDisciplinaDto(List<DisciplinaDto> disciplina) {
-		this.disciplina = disciplina;
+	public void setDisciplinas(List<DisciplinaDto> disciplinas) {
+		this.disciplinas = disciplinas;
 	}
+
 
     
 }

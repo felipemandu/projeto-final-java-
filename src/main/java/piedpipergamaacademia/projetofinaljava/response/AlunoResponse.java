@@ -7,15 +7,25 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class AlunoResponse {
 
     //TODO definir quais dados vão ser retornado na resposta
-
+	private Long id;
     private String nome;
     private String telefone;
     private String curso;
     private List<EnderecoResponse> endereco;
-    private List<DisciplinaResponse> disciplina;
+    private List<DisciplinaResponse> disciplinas;
     
+    
+  
 
-    public String getNome() {
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
         return nome;
     }
 
@@ -39,15 +49,17 @@ public class AlunoResponse {
         this.endereco = endereco;
     }
 
-    public List<DisciplinaResponse> getDisciplina() {
-        return disciplina;
-    }
+ 
 
-    public void setDisciplina(List<DisciplinaResponse> disciplina) {
-        this.disciplina = disciplina;
-    }
+    public List<DisciplinaResponse> getDisciplinas() {
+		return disciplinas;
+	}
 
-    public String getCurso() {
+	public void setDisciplinas(List<DisciplinaResponse> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
+
+	public String getCurso() {
         return curso;
     }
 

@@ -10,7 +10,7 @@ public class DisciplinaResponse {
     private Long id;
     private String nome;
     private String conceito;
-    private String media;
+    private String notaFinal;
     private String status;
 
     public Long getId() {
@@ -37,12 +37,14 @@ public class DisciplinaResponse {
         this.conceito = conceito;
     }
 
-	public String getMedia() {
-		return media;
+
+
+	public String getNotaFinal() {
+		return notaFinal;
 	}
 
-	public void setMedia(String media) {
-		this.media = media;
+	public void setNotaFinal(String notaFinal) {
+		this.notaFinal = notaFinal;
 	}
 
 	public String getStatus() {

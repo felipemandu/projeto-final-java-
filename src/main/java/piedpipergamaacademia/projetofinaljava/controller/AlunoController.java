@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -194,7 +193,7 @@ public class AlunoController {
 		AlunoResponse response = AlunoMapper.modelToResponse(aluno);
 		return ResponseEntity.ok(response);
 	}
-
+	
 	@PutMapping("/{id}/disciplina")
 	public ResponseEntity<AlunoResponse> putAlunoDisciplinaNota(@PathVariable("id") Long id,
 			 @RequestBody @Valid DisciplinaDto disciplina) {

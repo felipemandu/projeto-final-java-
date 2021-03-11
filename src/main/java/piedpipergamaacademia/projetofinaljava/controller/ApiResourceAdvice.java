@@ -37,12 +37,12 @@ public class ApiResourceAdvice {
 		return new ResponseEntity<Error>(new Error(ex.getClass().getSimpleName(), ex.getLocalizedMessage()), HttpStatus.BAD_REQUEST);
 	}
 
-	@ExceptionHandler(Exception.class)
-	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	@ResponseBody
-	public ResponseEntity<Error>  handleException(Exception ex) {
-		return new ResponseEntity<Error>(new Error(ex.getClass().getSimpleName(), ex.getLocalizedMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-	}
+//	@ExceptionHandler(Exception.class)
+//	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//	@ResponseBody
+//	public ResponseEntity<Error>  handleException(Exception ex) {
+//		return new ResponseEntity<Error>(new Error(ex.getClass().getSimpleName(), ex.getLocalizedMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+//	}
 	
 	@ExceptionHandler(IllegalArgumentException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)

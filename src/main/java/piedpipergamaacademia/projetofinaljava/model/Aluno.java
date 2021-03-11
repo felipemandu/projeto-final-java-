@@ -18,10 +18,10 @@ public class Aluno {
 
     private String curso;
 
-    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Endereco> enderecos = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Disciplina> disciplinas = new ArrayList<>();
 
     public Long getId() {
