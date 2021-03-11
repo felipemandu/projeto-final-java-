@@ -179,6 +179,7 @@ public class AlunoService {
 		aluno.setNome(alunoDto.getNome());
 		aluno.setCurso(alunoDto.getCurso());
 		aluno.setTelefone(alunoDto.getTelefone());
+		alunoRepository.saveAndFlush(aluno);
 
 		alunoOptional = Optional.of(aluno);
 
