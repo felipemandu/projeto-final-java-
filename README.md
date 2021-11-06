@@ -41,3 +41,9 @@ A documentação do projeto está na URL [https://piedpiper-gama-java.herokuapp.
 - Maven
 - Eclipse
 - Springdoc
+
+### Segunda etapa
+
+Uma segunda aplicação rest replicando este modelo foi desenvolvida em javascript utilizando persistencia noSql com o banco de dados mongodb. Esta segunda aplicação também serviria como uma espécie de api gateway para a api rest em java, tal requisito surgiu apenas como conceito para exploração técnica na comunicação entre apis, não existindo uma motivação técnica ou de negócio que justificaste tal opção. 
+
+[api rest em javascript](https://github.com/lucasccosta/projeto-gama-piedpiper)
